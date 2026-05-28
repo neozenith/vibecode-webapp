@@ -5,19 +5,7 @@
   --lego-blue: #006cb7;
   --lego-green: #00a650;
   --lego-black: #1a1a1a;
-  --lego-white: #ffffff;
-  --lego-gray: #f0f0f0;
   --stud-size: 20px;
-  --stud-color: rgba(0, 0, 0, 0.15);
-}
-
-*, *::before, *::after { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  font-family: 'Segoe UI', system-ui, sans-serif;
-  background: var(--lego-gray);
-  color: var(--lego-black);
 }
 
 /* ── Studs ── */
@@ -25,7 +13,7 @@ body {
   width: var(--stud-size);
   height: var(--stud-size);
   border-radius: 50%;
-  background: var(--stud-color);
+  background: rgba(0, 0, 0, 0.15);
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   flex-shrink: 0;
 }
@@ -46,7 +34,6 @@ body {
 }
 
 .brick-studs .stud {
-  --stud-color: rgba(255,255,255,0.4);
   background: var(--brick-color, var(--lego-red));
   filter: brightness(1.2);
   box-shadow: 0 2px 0 rgba(0,0,0,0.3);
@@ -93,13 +80,13 @@ body {
   font-size: 1.5rem;
   border-radius: 6px;
   box-shadow: 0 4px 0 rgba(0,0,0,0.3);
-  letter-spacing: 0;
   border: 2px solid rgba(0,0,0,0.15);
 }
 
 .nav {
   display: flex;
   gap: 24px;
+  align-items: center;
 }
 
 .nav a {
@@ -112,6 +99,23 @@ body {
 }
 
 .nav a:hover { opacity: 1; text-decoration: underline; }
+
+/* ── Theme toggle button ── */
+.theme-toggle {
+  background: rgba(255,255,255,0.15);
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: white;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.theme-toggle:hover {
+  background: rgba(255,255,255,0.25);
+  border-color: rgba(255,255,255,0.5);
+}
 
 /* ── Hero ── */
 .hero {
@@ -137,9 +141,9 @@ body {
 }
 
 .hero-studs .stud {
-  --stud-color: rgba(0,0,0,0.4);
   width: 32px;
   height: 32px;
+  background: rgba(0,0,0,0.4);
 }
 
 .hero-content {
@@ -160,7 +164,7 @@ body {
 
 .hero-content p {
   font-size: 1.15rem;
-  color: rgba(0,0,0,0.65);
+  color: var(--color-hero-text-muted);
   margin: 0 0 32px;
   max-width: 480px;
 }
@@ -201,17 +205,17 @@ body {
 
 /* ── Theme cards ── */
 .theme-card {
-  background: white;
+  background: var(--color-surface);
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 0 rgba(0,0,0,0.12);
+  box-shadow: 0 4px 0 var(--color-card-shadow);
   transition: transform 0.2s, box-shadow 0.2s;
   cursor: pointer;
 }
 
 .theme-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 0 rgba(0,0,0,0.15);
+  box-shadow: 0 8px 0 var(--color-card-shadow-hover);
 }
 
 .theme-card-top {
@@ -225,9 +229,9 @@ body {
 }
 
 .theme-studs .stud {
-  --stud-color: rgba(255,255,255,0.4);
   width: 24px;
   height: 24px;
+  background: rgba(255,255,255,0.4);
 }
 
 .theme-card-body {
@@ -249,7 +253,7 @@ body {
 
 .theme-pieces {
   font-size: 0.8rem;
-  color: #888;
+  color: var(--color-text-faint);
   font-weight: 600;
   margin: 0 0 10px;
   text-transform: uppercase;
@@ -258,17 +262,18 @@ body {
 
 .theme-desc {
   font-size: 0.9rem;
-  color: #555;
+  color: var(--color-text-muted);
   margin: 0;
   line-height: 1.5;
 }
 
 /* ── Fun facts ── */
 .fun-facts {
-  background: var(--lego-black);
-  color: white;
+  background: var(--color-facts-bg);
+  color: var(--color-facts-text);
   padding: 60px 40px;
   text-align: center;
+  transition: background 0.2s;
 }
 
 .fun-facts h2 {
@@ -287,7 +292,7 @@ body {
 }
 
 .fact-card {
-  background: rgba(255,255,255,0.06);
+  background: var(--color-facts-card);
   border-top: 5px solid var(--fact-color);
   border-radius: 6px;
   padding: 28px 16px;
@@ -303,7 +308,7 @@ body {
 
 .fact-label {
   font-size: 0.85rem;
-  opacity: 0.7;
+  color: var(--color-facts-label);
   line-height: 1.4;
 }
 
@@ -324,9 +329,9 @@ body {
 }
 
 .footer-studs .stud {
-  --stud-color: rgba(255,255,255,0.6);
   width: 24px;
   height: 24px;
+  background: rgba(255,255,255,0.6);
 }
 
 .footer p {
@@ -337,9 +342,14 @@ body {
 }
 
 /* ── Responsive ── */
-@media (max-width: 600px) {
+@media (max-width: 900px) {
   .header { padding: 12px 20px; }
-  .themes-section { padding: 40px 20px; }
   .nav { gap: 16px; }
+  .nav a { font-size: 0.85rem; }
   .logo-block { width: 36px; height: 36px; font-size: 1.2rem; }
+}
+
+@media (max-width: 600px) {
+  .themes-section { padding: 40px 20px; }
+  .nav a { display: none; }
 }

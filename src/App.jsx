@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTheme } from './ThemeContext.jsx'
 import './App.css'
 
 const THEMES = [
@@ -45,6 +46,7 @@ function ThemeCard({ theme }) {
 
 function App() {
   const [brickCount, setBrickCount] = useState(0)
+  const { mode, toggle } = useTheme()
 
   return (
     <div className="app">
@@ -59,6 +61,9 @@ function App() {
           <a href="#">Sets</a>
           <a href="#">Themes</a>
           <a href="#">My Collection</a>
+          <button className="theme-toggle" onClick={toggle} aria-label="Toggle dark mode">
+            {mode === 'light' ? '🌙' : '☀️'}
+          </button>
         </nav>
       </header>
 
