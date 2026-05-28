@@ -1,0 +1,345 @@
+/* ── LEGO brand colours ── */
+:root {
+  --lego-red: #e3000b;
+  --lego-yellow: #f5c400;
+  --lego-blue: #006cb7;
+  --lego-green: #00a650;
+  --lego-black: #1a1a1a;
+  --lego-white: #ffffff;
+  --lego-gray: #f0f0f0;
+  --stud-size: 20px;
+  --stud-color: rgba(0, 0, 0, 0.15);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: var(--lego-gray);
+  color: var(--lego-black);
+}
+
+/* ── Studs ── */
+.stud {
+  width: var(--stud-size);
+  height: var(--stud-size);
+  border-radius: 50%;
+  background: var(--stud-color);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  flex-shrink: 0;
+}
+
+/* ── Brick component ── */
+.brick {
+  display: inline-flex;
+  flex-direction: column;
+  border-radius: 4px;
+  overflow: visible;
+}
+
+.brick-studs {
+  display: flex;
+  gap: 6px;
+  padding: 0 8px;
+  margin-bottom: -6px;
+}
+
+.brick-studs .stud {
+  --stud-color: rgba(255,255,255,0.4);
+  background: var(--brick-color, var(--lego-red));
+  filter: brightness(1.2);
+  box-shadow: 0 2px 0 rgba(0,0,0,0.3);
+}
+
+.brick-body {
+  background: var(--brick-color, var(--lego-red));
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.25);
+}
+
+/* ── Header ── */
+.header {
+  background: var(--lego-red);
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  display: flex;
+  gap: 6px;
+}
+
+.logo-block {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: var(--lego-yellow);
+  color: var(--lego-red);
+  font-weight: 900;
+  font-size: 1.5rem;
+  border-radius: 6px;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.3);
+  letter-spacing: 0;
+  border: 2px solid rgba(0,0,0,0.15);
+}
+
+.nav {
+  display: flex;
+  gap: 24px;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
+
+.nav a:hover { opacity: 1; text-decoration: underline; }
+
+/* ── Hero ── */
+.hero {
+  background: var(--lego-yellow);
+  position: relative;
+  overflow: hidden;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-studs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 16px 24px;
+  opacity: 0.35;
+}
+
+.hero-studs .stud {
+  --stud-color: rgba(0,0,0,0.4);
+  width: 32px;
+  height: 32px;
+}
+
+.hero-content {
+  position: relative;
+  text-align: center;
+  z-index: 1;
+  padding: 60px 20px;
+}
+
+.hero-content h1 {
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 900;
+  margin: 0 0 16px;
+  color: var(--lego-black);
+  line-height: 1.1;
+  text-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+}
+
+.hero-content p {
+  font-size: 1.15rem;
+  color: rgba(0,0,0,0.65);
+  margin: 0 0 32px;
+  max-width: 480px;
+}
+
+.btn-primary {
+  background: var(--lego-red);
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 6px 0 rgba(0,0,0,0.3);
+  transition: transform 0.1s, box-shadow 0.1s;
+  letter-spacing: 0.3px;
+}
+
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 0 rgba(0,0,0,0.3); }
+.btn-primary:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.3); }
+
+/* ── Themes section ── */
+.themes-section {
+  padding: 60px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  margin-bottom: 40px;
+}
+
+.themes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* ── Theme cards ── */
+.theme-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.12);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.theme-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 0 rgba(0,0,0,0.15);
+}
+
+.theme-card-top {
+  background: var(--theme-color);
+  padding: 16px 16px 0;
+}
+
+.theme-studs {
+  display: flex;
+  gap: 10px;
+}
+
+.theme-studs .stud {
+  --stud-color: rgba(255,255,255,0.4);
+  width: 24px;
+  height: 24px;
+}
+
+.theme-card-body {
+  padding: 20px;
+}
+
+.theme-emoji {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.theme-card h3 {
+  margin: 0 0 4px;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--theme-color);
+}
+
+.theme-pieces {
+  font-size: 0.8rem;
+  color: #888;
+  font-weight: 600;
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.theme-desc {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Fun facts ── */
+.fun-facts {
+  background: var(--lego-black);
+  color: white;
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.fun-facts h2 {
+  font-size: 2rem;
+  font-weight: 900;
+  margin: 0 0 40px;
+  letter-spacing: -0.5px;
+}
+
+.facts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.fact-card {
+  background: rgba(255,255,255,0.06);
+  border-top: 5px solid var(--fact-color);
+  border-radius: 6px;
+  padding: 28px 16px;
+}
+
+.fact-number {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: var(--fact-color);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.fact-label {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  line-height: 1.4;
+}
+
+/* ── Footer ── */
+.footer {
+  background: var(--lego-red);
+  color: white;
+  text-align: center;
+  overflow: hidden;
+}
+
+.footer-studs {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 12px;
+  opacity: 0.4;
+}
+
+.footer-studs .stud {
+  --stud-color: rgba(255,255,255,0.6);
+  width: 24px;
+  height: 24px;
+}
+
+.footer p {
+  margin: 0;
+  padding: 0 0 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .header { padding: 12px 20px; }
+  .themes-section { padding: 40px 20px; }
+  .nav { gap: 16px; }
+  .logo-block { width: 36px; height: 36px; font-size: 1.2rem; }
+}
